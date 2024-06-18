@@ -104,6 +104,10 @@
       volta
       nil
       nixpkgs-fmt
+      gh
+      rustup
+      deno
+      atuin
     ];
   };
 
@@ -137,9 +141,11 @@
   # allows use of 
   programs.nix-ld.enable = true;
 
+  
   environment.variables = rec {
     VOLTA_HOME = "/home/brad/.volta";
     PATH = "${VOLTA_HOME}/bin:$PATH";
+    LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:${pkgs.glib.out}/lib";
   };
 
   # Allow unfree packages
@@ -153,7 +159,10 @@
     curl
     xdg-utils
     gnumake
-    
+    python3
+    python-launcher
+    clang
+    llvmPackages_18.bintools
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
